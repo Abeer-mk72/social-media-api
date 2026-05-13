@@ -1,33 +1,22 @@
 const express = require("express");
 
-const usersController = require("../controllers/users.controller");
-const asyncHandler = require("../utils/asyncHandler");
-
 const router = express.Router();
 
-router.get(
-    "/",
-    asyncHandler(usersController.getAll)
-);
+const usersController = require("../controllers/users.controller");
 
-router.get(
-    "/:id",
-    asyncHandler(usersController.getOne)
-);
+const asyncHandler = require("../utils/asyncHandler");
 
-router.post(
-    "/",
-    asyncHandler(usersController.add)
-);
 
-router.put(
-    "/:id",
-    asyncHandler(usersController.update)
-);
+router.post("/",asyncHandler(usersController.add));
 
-router.delete(
-    "/:id",
-    asyncHandler(usersController.remove)
-);
+router.get( "/:id",asyncHandler(usersController.getOne));
+
+router.put("/:id",asyncHandler(usersController.update));
+
+router.delete( "/:id", asyncHandler(usersController.remove));
+
+
+router.get("/:id/posts",asyncHandler(usersController.getUserPosts));
+
 
 module.exports = router;

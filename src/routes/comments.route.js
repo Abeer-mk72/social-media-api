@@ -1,33 +1,13 @@
 const express = require("express");
 
-const commentsController = require("../controllers/comments.controller");
-const asyncHandler = require("../utils/asyncHandler");
-
 const router = express.Router();
 
-router.get(
-    "/",
-    asyncHandler(commentsController.getAll)
-);
+const commentsController = require("../controllers/comments.controller");
 
-router.get(
-    "/:id",
-    asyncHandler(commentsController.getOne)
-);
+const asyncHandler = require("../utils/asyncHandler");
 
-router.post(
-    "/",
-    asyncHandler(commentsController.add)
-);
 
-router.put(
-    "/:id",
-    asyncHandler(commentsController.update)
-);
+router.delete("/:id", asyncHandler(commentsController.remove));
 
-router.delete(
-    "/:id",
-    asyncHandler(commentsController.remove)
-);
 
 module.exports = router;
